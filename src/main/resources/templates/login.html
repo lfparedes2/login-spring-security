@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login Form</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>-->
+</head>
+<body>
+<div class="container ">
+    <div class="row px-3">
+        <div class="col-lg-10 col-xl-9 card flex-row mx-auto px-0">
+            <div class="img-left d-none d-md-flex"></div>
+
+            <div class="card-body">
+
+               <div class="text-center">
+                   <img th:src="@{/images/logo.jpg}" class="img-thumbnail" width="100" alt="Logo" style="border: 0px;"/>
+               </div>
+
+                <h5 class="title text-center mt-4">
+                    Certificados Homonimos/Sentenciados
+                </h5>
+                <form th:action="@{/login}" method="POST" autocomplete="off"  class="form-box px-3">
+
+                    <div class="form-input">
+                        <span><i class="fa fa-user"></i></span>
+                        <input type="text" id="user_name" name="user_name" placeholder="Usuario" class="form-control"  minlength="5"  required/>
+                    </div>
+
+                    <div class="form-input" >
+                        <span><i class="fa fa-key"></i></span>
+                        <input type="password" placeholder="Password" id="password" name="password" class="form-control" minlength="5"  required/>
+                        <span class="vista"><i>✓</i></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="cb1" name="">
+                            <label class="custom-control-label" for="cb1">Remember me</label>
+                        </div>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit"  th:text="Login"></button>
+                    </div>
+
+<!--                    <div th:if="${param.error}" class="alert alert-danger alert-dismissible fade show" role="alert">-->
+<!--                        <div class="text-break"> Usuario o Clave incorrectos.</div>-->
+<!--                        <button type="button" class="close" data-dismiss="alert" aria-label="Close" >-->
+<!--                            <a th:href="@{/}">  <span aria-hidden="true">&times;</span> </a>-->
+<!--                        </button>-->
+<!--                    </div>-->
+
+                    <div align="center" th:if="${param.error}" class="animate__bounceIn">
+                        <p style="font-size: 20; color: #FF1C19;"> Usuario o Clave incorrectos</p>
+                    </div>
+
+                    <div class="text-right">
+                        <a th:href="@{/recuperar}" class="forget-link"> Recuperar contraseña?</a>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <div class="text-center mb-2">
+                        No tiene usuario?
+                        <a th:href="@{/registration}" class="register-link"> Registrarse aqui</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+document.querySelector('.vista').addEventListener('click', e => {
+    const passwordInput = document.querySelector('#password');
+    if (e.target.classList.contains('show')) {
+        e.target.classList.remove('show');
+        e.target.textContent = 'x';
+        passwordInput.type = 'text';
+    } else {
+        e.target.classList.add('show');
+        e.target.textContent = '✓';
+        passwordInput.type = 'password';
+    }
+});
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login Form</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+</head>
+<body>
+<div class="container ">
+    <div class="row px-3">
+        <div class="col-lg-10 col-xl-9 card flex-row mx-auto px-0">
+            <div class="img-left d-none d-md-flex"></div>
+
+            <div class="card-body">
+                <form th:action="@{/}" method="get">
+                    <button class="btn btn-outline-primary btn-sm text-right"  type="Submit"><--- Regresar</button>
+                </form>
+                <h5 class="title text-center mt-4">
+                   Recuperación de contraseña
+                </h5>
+                <form autocomplete="off" action="#" th:action="@{/recuperar}" th:object="${user}" method="post"  class="form-box px-3">
+
+                    <label th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="validation-message"></label>
+                    <div class="form-input">
+                        <span><i class="fa fa-user"></i></span>
+                        <input ttype="text" th:field="*{userName}" placeholder="Usuario" required minlength="5" class="form-control"/>
+                    </div>
+
+                    <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="validation-message"></label>
+                    <div class="form-input">
+                        <span><i class="fa fa-envelope"></i></span>
+                        <input type="text" th:field="*{email}" placeholder="Email" required class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <button class="btn btn-lg btn-primary btn-block" name="Submit"  type="Submit" >Recuperar</button>
+                    </div>
+                    <hr class="my-4">
+
+                    <div class="animate__bounceIn text-center" th:if="${successMessage}">
+                        <p><span class="text-success" th:utext="${successMessage}"  style="font-size: 20;bold;"></span></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</body>
+</html>
